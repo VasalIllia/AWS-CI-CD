@@ -13,7 +13,7 @@ jobs:
             - name: Create deployment package
               working-directory: ./AWS-CI-CD.App
               run: |
-                zip -r ../app.zip . -x '*/bin/*' '*/obj/*' '*.user'
+                zip -r app.zip . -x '*.git*' '*/bin/*' '*/obj/*' '*.user' 'AWS-CI-CD.Tests/*'
             - name: Deploy to AWS Elastic Beanstalk
               uses: einaregilsson/beanstalk-deploy@v22
               with:
