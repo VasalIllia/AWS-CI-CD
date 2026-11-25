@@ -1,0 +1,25 @@
+name: CI(Pull Request)
+
+on:
+    pull_request:
+        branches: ["main"]
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+
+            - name: Set up .Net
+              uses: actions/setup-dotnet@v6
+              with:
+                dotnet-version: 10.0.x
+
+            - name: Build
+              run: |
+                dotnet build ./AWS-CI-CD.Tests
+            - name: Run Tests
+              run: |
+                dotnet test ./AWS-CI-CD.Tests
+            - name: Build Docker Image
+              run: |
+                run: docker build -t aws-ci-cd:latest .
