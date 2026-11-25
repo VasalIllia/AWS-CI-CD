@@ -17,6 +17,9 @@ jobs:
             - name: Build
               run: |
                 dotnet build ./AWS-CI-CD.Tests
+            - name: Lint (Static Code Analysis)
+              run: |
+                dotnet format --verify-no-changes --no-restore
             - name: Run Tests
               run: |
                 dotnet test ./AWS-CI-CD.Tests
