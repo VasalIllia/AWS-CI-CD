@@ -12,7 +12,7 @@ jobs:
 
             - name: Create deployment package
               run: |
-                run: zip -r app.zip . -x '*.git*' '*/bin/*' '*/obj/*' '*.user' 'AWS-CI-CD.Tests/*'
+                zip -r app.zip . -x '*.git*' '*/bin/*' '*/obj/*' '*.user' 'AWS-CI-CD.Tests/*'
             - name: Deploy to AWS Elastic Beanstalk
               uses: einaregilsson/beanstalk-deploy@v22
               with:
