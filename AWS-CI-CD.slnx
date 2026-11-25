@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AWS-CI-CD.App/AWS-CI-CD.App.csproj" />
+  <Project Path="AWS-CI-CD.Tests/AWS-CI-CD.Tests.csproj" />
+</Solution>

@@ -1,0 +1,25 @@
+name: CD(Main Branch)
+
+on:
+    push:
+        branches: ["main"]
+jobs:
+    cd:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+
+            - name: Create deployment package
+              working-directory: ./AWS-CI-CD.App
+              run: |
+                zip -r ../app.zip . -x '*/bin/*' '*/obj/*' '*.user'
+            - name: Deploy to AWS Elastic Beanstalk
+              uses: einaregilsson/beanstalk-deploy@v22
+              with:
+                aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                application_name: "Student-cicd-api"
+                environment_name: "Student-cicd-api-env"
+                region: "eu-central-1"
+                version_label: "build-${{ github.run_id }}-${{ github.run_attempt }}"
+                deployment_package: "app.zip"
