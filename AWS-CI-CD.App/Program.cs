@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
